@@ -15,7 +15,7 @@ namespace Planejamento_RPA
             Processos proc = new Processos();
 
             proc.Acompanhamento_BV(diretorio);
-
+            proc.WhatsApp_Resumo_BV(diretorio);
 
 
         }
