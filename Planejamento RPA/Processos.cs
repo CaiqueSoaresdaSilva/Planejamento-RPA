@@ -316,7 +316,7 @@ namespace Planejamento_RPA
                         xlWorkBook = xlApp.Workbooks.Open(nomeArq, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
 
                         // RESUMO
-                        xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+                        xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets["Total"];
 
                         range = xlWorkSheet.UsedRange;
                         rw = range.Rows.Count;
