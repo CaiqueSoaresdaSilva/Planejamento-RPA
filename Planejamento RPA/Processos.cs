@@ -296,6 +296,28 @@ namespace Planejamento_RPA
             List<string> errors = new List<string>();
             StringBuilder mensagem = new StringBuilder();
 
+
+            // Copiar arquivo do Planejamento para processar, somente se nao existir na pasta de processado ok
+            try
+            {
+                if (File.Exists(procOk + "WHATS RESUMO_" + DateTime.Today.ToString("yyyy-MM-dd") + ".xlsx") == false)
+                {
+                    File.Copy(@"\\10.0.0.8\setores$\PLANEJAMENTO\OPERACOES_E_RESULTADOS\OPERACOES E RESULTADOS\Control Desk\BV\Whats\WHATS RESUMO.xlsx", diretorio + "WHATS RESUMO.xlsx");
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
+                //ARQUIVO DE LOG
+                string nomeArquvoLog = LOG + "WHATS RESUMO_ERRO_Log.txt";
+                string erro = "Erro ao processar o arquivo. Exceção: " + ex.ToString();
+                StreamWriter writer = new StreamWriter(nomeArquvoLog);
+                writer.WriteLine(erro);
+                writer.Close();
+                throw;
+            }
+
+            // Comecar a ler arquivos do diretorio
             arquivos = Directory.GetFiles(diretorio, "*.xls");
 
             if (arquivos.Length >= 1)
